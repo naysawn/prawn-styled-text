@@ -1,4 +1,5 @@
 require 'prawn'
+require "open-uri"
 
 Prawn::Document.class_eval do
   def styled_text( data )
@@ -68,7 +69,8 @@ Prawn::Document.class_eval do
           end
           image_options[:width]  = options[:width]  if options[:width]
           image_options[:height] = options[:height] if options[:height]
-          self.image context[:src], image_options
+
+          self.image open(context[:src]), image_options
         end
       end
     end
