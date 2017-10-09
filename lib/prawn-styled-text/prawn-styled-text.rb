@@ -9,6 +9,7 @@ module PrawnStyledText
   DEF_HEADING_H = 8
   DEF_MARGIN_UL = 15
   DEF_SYMBOL_UL = "\x95 "
+  DEF_MARGIN_P = 5
   HEADINGS = { h1: 32, h2: 24, h3: 20, h4: 16, h5: 14, h6: 13 }
   RENAME = { 'font-family': :font, 'font-size': :size, 'font-style': :styles, 'letter-spacing': :character_spacing }
 
@@ -102,6 +103,8 @@ module PrawnStyledText
         context[:options][:size] = HEADINGS[tag]
         context[:options][:'margin-top'] = DEF_HEADING_T
         context[:options][:'line-height'] = DEF_HEADING_H
+      when :p
+        context[:options][:'margin-top'] = DEF_MARGIN_P
       when :i, :em # italic
         styles.push :italic
       when :li # list item
