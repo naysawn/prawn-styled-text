@@ -2,6 +2,9 @@ require 'prawn'
 require "open-uri"
 
 Prawn::Document.class_eval do
+  MAX_WIDTH  = 450
+  MAX_HEIGHT = 600
+
   def styled_text( data )
     parts = []
     text_options = {}
@@ -69,13 +72,14 @@ Prawn::Document.class_eval do
           end
           if options[:width]
             image_options[:width]  = (options[:width]*0.75).to_i
-            image_options[:width] = 600 if image_options[:width] > 600
+            image_options[:width] = MAX_WIDTH if image_options[:width].to_i > MAX_WIDTH
           end
           if options[:height]
             image_options[:height] = (options[:height]*0.75).to_i
-            image_options[:height] = 600 if image_options[:width] > 600
+            image_options[:height] = MAX_HEIGHT if image_options[:height].to_i > MAX_HEIGHT
           end
           self.image open(context[:src]), image_options
+
         end
       end
     end
