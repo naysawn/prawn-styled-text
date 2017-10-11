@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0")
   spec.require_paths = ['lib']
 
+  # spec.add_runtime_dependency 'byebug'
   spec.add_runtime_dependency 'prawn', '~> 2'
   spec.add_runtime_dependency 'oga', '~> 2'
 end

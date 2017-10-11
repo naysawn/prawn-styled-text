@@ -67,9 +67,14 @@ Prawn::Document.class_eval do
             pos = options[:'image-position'].to_i
             image_options[:position] = pos > 0 ? pos : options[:'image-position']
           end
-          image_options[:width]  = options[:width]  if options[:width]
-          image_options[:height] = options[:height] if options[:height]
-
+          if options[:width]
+            image_options[:width]  = (options[:width]*0.75).to_i
+            image_options[:width] = 600 if image_options[:width] > 600
+          end
+          if options[:height]
+            image_options[:height] = (options[:height]*0.75).to_i
+            image_options[:height] = 600 if image_options[:width] > 600
+          end
           self.image open(context[:src]), image_options
         end
       end
