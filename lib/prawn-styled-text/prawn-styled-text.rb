@@ -6,10 +6,11 @@ module PrawnStyledText
   BLOCK_TAGS = [ :br, :div, :h1, :h2, :h3, :h4, :h5, :h6, :hr, :li, :p, :ul ]
   DEF_BG_MARK = 'ffff00'
   DEF_HEADING_T = 16
+  DEF_HEADING_MARGIN = 5
   DEF_HEADING_H = 8
   DEF_MARGIN_UL = 15
   DEF_SYMBOL_UL = "\x95 "
-  DEF_MARGIN_P = 2
+  DEF_MARGIN_P = 5
   HEADINGS = { h1: 32, h2: 24, h3: 20, h4: 16, h5: 14, h6: 13 }
   RENAME = { 'font-family': :font, 'font-size': :size, 'font-style': :styles, 'letter-spacing': :character_spacing }
 
@@ -101,10 +102,11 @@ module PrawnStyledText
         context[:options][:callback] = @@strike_through
       when :h1, :h2, :h3, :h4, :h5, :h6
         context[:options][:size] = HEADINGS[tag]
-        context[:options][:'margin-top'] = DEF_HEADING_T
+        context[:options][:'margin-top'] = DEF_HEADING_MARGIN
         context[:options][:'line-height'] = DEF_HEADING_H
       when :p
-        context[:options][:'margin-top'] = 10
+        context[:options][:size] = 10
+        context[:options][:'margin-top'] = DEF_MARGIN_P
         context[:options][:'line-height'] = 2
         styles.push :ultralight
       when :i, :em # italic

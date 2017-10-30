@@ -4,6 +4,7 @@ require "open-uri"
 Prawn::Document.class_eval do
   MAX_WIDTH  = 450
   MAX_HEIGHT = 600
+  IMAGE_MARGIN = 20
 
   def styled_text( data )
     parts = []
@@ -61,6 +62,7 @@ Prawn::Document.class_eval do
           self.undash if options[:dash]
         elsif context[:tag] == :img && context[:src]
           image_options = {}
+
           image_options[:scale] = options[:'image-scale'].to_f if options[:'image-scale']
           if options[:'image-at']
             xy = options[:'image-at'].split( ',' ).map &:to_i
@@ -78,6 +80,7 @@ Prawn::Document.class_eval do
             image_options[:height] = (options[:height]*0.75).to_i
             image_options[:height] = MAX_HEIGHT if image_options[:height].to_i > MAX_HEIGHT
           end
+          self.move_down( IMAGE_MARGIN )
           self.image open(context[:src]), image_options
 
         end
