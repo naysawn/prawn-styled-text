@@ -3,7 +3,7 @@ require "open-uri"
 
 Prawn::Document.class_eval do
   MAX_WIDTH  = 450
-  MAX_HEIGHT = 600
+  MAX_HEIGHT = 500
   IMAGE_MARGIN = 20
 
   def styled_text( data )
@@ -81,7 +81,7 @@ Prawn::Document.class_eval do
             image_options[:height] = MAX_HEIGHT if image_options[:height].to_i > MAX_HEIGHT
           end
           self.move_down( IMAGE_MARGIN )
-          self.image open(context[:src]), image_options
+          self.image open(context[:src]), fit: [480,540]
 
         end
       end
